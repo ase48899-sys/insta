@@ -1,0 +1,1170 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Instagram Story
+    </title>
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            font-family:
+                Arial,
+                Tahoma,
+                sans-serif;
+
+            color: white;
+
+            background:
+                radial-gradient(
+                    circle at top left,
+                    #833ab4,
+                    transparent 35%
+                ),
+
+                radial-gradient(
+                    circle at top right,
+                    #fd1d1d,
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #09090b,
+                    #18181b
+                );
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+        }
+
+
+        .container {
+
+            width: 100%;
+
+            max-width: 480px;
+
+        }
+
+
+        .card {
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
+
+            border:
+                1px solid
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.12
+                );
+
+            border-radius: 28px;
+
+            padding: 25px;
+
+            backdrop-filter:
+                blur(20px);
+
+            -webkit-backdrop-filter:
+                blur(20px);
+
+            box-shadow:
+                0 25px 80px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.45
+                );
+
+        }
+
+
+        .logo {
+
+            width: 75px;
+
+            height: 75px;
+
+            margin:
+                0 auto 15px;
+
+            border-radius: 22px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 38px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #833ab4,
+                    #fd1d1d,
+                    #fcb045
+                );
+
+        }
+
+
+        h1 {
+
+            text-align: center;
+
+            margin: 0;
+
+            font-size: 25px;
+
+        }
+
+
+        .subtitle {
+
+            text-align: center;
+
+            color: #cbd5e1;
+
+            margin-top: 8px;
+
+            margin-bottom: 25px;
+
+            font-size: 14px;
+
+        }
+
+
+        .login-button {
+
+            width: 100%;
+
+            border: none;
+
+            border-radius: 15px;
+
+            padding: 15px;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            background:
+                #1877f2;
+
+            transition: 0.2s;
+
+        }
+
+
+        .login-button:hover {
+
+            transform:
+                translateY(-2px);
+
+        }
+
+
+        .login-button:disabled {
+
+            opacity: 0.6;
+
+            cursor:
+                not-allowed;
+
+        }
+
+
+        .account {
+
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 12px;
+
+            border-radius: 13px;
+
+            text-align: center;
+
+            background:
+                rgba(
+                    34,
+                    197,
+                    94,
+                    0.12
+                );
+
+            border:
+                1px solid
+                rgba(
+                    34,
+                    197,
+                    94,
+                    0.25
+                );
+
+            color: #86efac;
+
+        }
+
+
+        .upload-area {
+
+            margin-top: 20px;
+
+            padding: 30px 20px;
+
+            border:
+                2px dashed
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.25
+                );
+
+            border-radius: 20px;
+
+            text-align: center;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+        }
+
+
+        .upload-area:hover {
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.05
+                );
+
+        }
+
+
+        .upload-icon {
+
+            font-size: 45px;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        .upload-title {
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+        }
+
+
+        .upload-description {
+
+            color: #a1a1aa;
+
+            font-size: 13px;
+
+            margin-top: 7px;
+
+        }
+
+
+        #videoInput {
+
+            display: none;
+
+        }
+
+
+        .preview {
+
+            display: none;
+
+            margin-top: 20px;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            background: black;
+
+        }
+
+
+        video {
+
+            display: block;
+
+            width: 100%;
+
+            max-height: 600px;
+
+            background: black;
+
+        }
+
+
+        .file-info {
+
+            display: none;
+
+            margin-top: 12px;
+
+            padding: 12px;
+
+            border-radius: 12px;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.06
+                );
+
+            color: #d4d4d8;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+        }
+
+
+        .publish-button {
+
+            display: none;
+
+            width: 100%;
+
+            margin-top: 18px;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #833ab4,
+                    #fd1d1d,
+                    #fcb045
+                );
+
+        }
+
+
+        .publish-button:disabled {
+
+            opacity: 0.6;
+
+            cursor:
+                not-allowed;
+
+        }
+
+
+        .remove-button {
+
+            display: none;
+
+            width: 100%;
+
+            margin-top: 10px;
+
+            padding: 12px;
+
+            border-radius: 13px;
+
+            border:
+                1px solid
+                rgba(
+                    239,
+                    68,
+                    68,
+                    0.35
+                );
+
+            background:
+                rgba(
+                    239,
+                    68,
+                    68,
+                    0.1
+                );
+
+            color: #fca5a5;
+
+            cursor: pointer;
+
+        }
+
+
+        .status {
+
+            min-height: 25px;
+
+            margin-top: 18px;
+
+            text-align: center;
+
+            color: #dbeafe;
+
+            font-size: 14px;
+
+        }
+
+
+        .features {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    3,
+                    1fr
+                );
+
+            gap: 8px;
+
+            margin-top: 22px;
+
+        }
+
+
+        .feature {
+
+            padding: 12px 5px;
+
+            text-align: center;
+
+            background:
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.05
+                );
+
+            border-radius: 13px;
+
+            font-size: 11px;
+
+            color: #d4d4d8;
+
+        }
+
+
+        .feature-icon {
+
+            display: block;
+
+            font-size: 20px;
+
+            margin-bottom: 5px;
+
+        }
+
+
+        .footer {
+
+            text-align: center;
+
+            margin-top: 20px;
+
+            color: #71717a;
+
+            font-size: 11px;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <div class="card">
+
+
+        <div class="logo">
+            📱
+        </div>
+
+
+        <h1>
+            Instagram Story
+        </h1>
+
+
+        <div class="subtitle">
+            نشر فيديو رسميًا على Instagram
+        </div>
+
+
+        <!-- تسجيل الدخول -->
+
+        <button
+            id="loginButton"
+            class="login-button"
+            onclick="loginMeta()"
+        >
+
+            تسجيل الدخول بواسطة Meta
+
+        </button>
+
+
+        <!-- الحساب -->
+
+        <div
+            id="accountBox"
+            class="account"
+        >
+
+            ✅ تم الاتصال بحساب Instagram
+
+        </div>
+
+
+        <!-- اختيار الفيديو -->
+
+        <label
+            class="upload-area"
+            for="videoInput"
+        >
+
+            <div class="upload-icon">
+                🎬
+            </div>
+
+            <div class="upload-title">
+                اختر فيديو
+            </div>
+
+            <div class="upload-description">
+                اضغط هنا لاختيار فيديو من هاتفك
+            </div>
+
+            <div class="upload-description">
+                MP4 / MOV / WebM
+            </div>
+
+        </label>
+
+
+        <input
+            id="videoInput"
+            type="file"
+            accept="video/*"
+        >
+
+
+        <!-- المعاينة -->
+
+        <div
+            id="preview"
+            class="preview"
+        >
+
+            <video
+                id="video"
+                controls
+                playsinline
+            ></video>
+
+        </div>
+
+
+        <!-- معلومات الفيديو -->
+
+        <div
+            id="fileInfo"
+            class="file-info"
+        ></div>
+
+
+        <!-- النشر -->
+
+        <button
+            id="publishButton"
+            class="publish-button"
+            onclick="publishStory()"
+        >
+
+            🚀 نشر على Instagram Story
+
+        </button>
+
+
+        <!-- حذف -->
+
+        <button
+            id="removeButton"
+            class="remove-button"
+            onclick="removeVideo()"
+        >
+
+            حذف الفيديو
+
+        </button>
+
+
+        <!-- الحالة -->
+
+        <div
+            id="status"
+            class="status"
+        ></div>
+
+
+        <div class="features">
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    🔐
+                </span>
+
+                Meta API
+
+            </div>
+
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    🎬
+                </span>
+
+                فيديو
+
+            </div>
+
+
+            <div class="feature">
+
+                <span class="feature-icon">
+                    🚀
+                </span>
+
+                نشر رسمي
+
+            </div>
+
+        </div>
+
+
+        <div class="footer">
+            Instagram Story Uploader
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+let selectedVideo = null;
+
+
+const videoInput =
+    document.getElementById(
+        "videoInput"
+    );
+
+
+const video =
+    document.getElementById(
+        "video"
+    );
+
+
+const preview =
+    document.getElementById(
+        "preview"
+    );
+
+
+const fileInfo =
+    document.getElementById(
+        "fileInfo"
+    );
+
+
+const publishButton =
+    document.getElementById(
+        "publishButton"
+    );
+
+
+const removeButton =
+    document.getElementById(
+        "removeButton"
+    );
+
+
+const statusBox =
+    document.getElementById(
+        "status"
+    );
+
+
+const accountBox =
+    document.getElementById(
+        "accountBox"
+    );
+
+
+
+/*
+========================================
+فحص حالة الحساب
+========================================
+*/
+
+async function checkAccount() {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/account"
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (
+            data.connected
+        ) {
+
+            accountBox.style.display =
+                "block";
+
+        }
+
+    }
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+    }
+
+}
+
+
+checkAccount();
+
+
+
+/*
+========================================
+تسجيل الدخول Meta
+========================================
+*/
+
+function loginMeta() {
+
+    window.location.href =
+        "/auth/meta";
+
+}
+
+
+
+/*
+========================================
+اختيار الفيديو
+========================================
+*/
+
+videoInput.addEventListener(
+    "change",
+
+    function () {
+
+        const file =
+            this.files[0];
+
+
+        if (!file) {
+            return;
+        }
+
+
+        if (
+            !file.type.startsWith(
+                "video/"
+            )
+        ) {
+
+            alert(
+                "الرجاء اختيار فيديو."
+            );
+
+            return;
+
+        }
+
+
+        selectedVideo =
+            file;
+
+
+        const url =
+            URL.createObjectURL(
+                file
+            );
+
+
+        video.src =
+            url;
+
+
+        preview.style.display =
+            "block";
+
+
+        const size =
+            (
+                file.size /
+                1024 /
+                1024
+            ).toFixed(2);
+
+
+        fileInfo.innerHTML =
+            `
+            <strong>اسم الملف:</strong>
+            ${escapeHTML(file.name)}
+
+            <br>
+
+            <strong>الحجم:</strong>
+            ${size} MB
+
+            <br>
+
+            <strong>النوع:</strong>
+            ${escapeHTML(file.type)}
+            `;
+
+
+        fileInfo.style.display =
+            "block";
+
+
+        publishButton.style.display =
+            "block";
+
+
+        removeButton.style.display =
+            "block";
+
+
+        statusBox.textContent =
+            "✅ تم اختيار الفيديو.";
+
+    }
+);
+
+
+
+/*
+========================================
+رفع الفيديو للسيرفر
+========================================
+*/
+
+async function publishStory() {
+
+    if (!selectedVideo) {
+
+        alert(
+            "اختر فيديو أولاً."
+        );
+
+        return;
+
+    }
+
+
+    publishButton.disabled =
+        true;
+
+
+    statusBox.textContent =
+        "⏳ جاري رفع الفيديو...";
+
+
+    try {
+
+
+        const formData =
+            new FormData();
+
+
+        formData.append(
+            "video",
+            selectedVideo
+        );
+
+
+        const uploadResponse =
+            await fetch(
+                "/upload-video",
+                {
+                    method:
+                        "POST",
+
+                    body:
+                        formData
+                }
+            );
+
+
+        const uploadData =
+            await uploadResponse.json();
+
+
+        if (
+            !uploadResponse.ok ||
+            !uploadData.success
+        ) {
+
+            throw new Error(
+                uploadData.message ||
+                "فشل رفع الفيديو"
+            );
+
+        }
+
+
+        statusBox.textContent =
+            "⏳ تم رفع الفيديو. جاري النشر...";
+
+
+        /*
+        ========================================
+        النشر الرسمي
+        ========================================
+        */
+
+
+        const publishResponse =
+            await fetch(
+                "/publish-story",
+                {
+                    method:
+                        "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    }
+                }
+            );
+
+
+        const publishData =
+            await publishResponse.json();
+
+
+        if (
+            !publishResponse.ok ||
+            !publishData.success
+        ) {
+
+            throw new Error(
+                publishData.message ||
+                "لم يتم النشر"
+            );
+
+        }
+
+
+        statusBox.textContent =
+            "🎉 تم نشر الفيديو على Instagram Story بنجاح!";
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            error
+        );
+
+
+        statusBox.textContent =
+            "❌ " +
+            error.message;
+
+    }
+
+
+    finally {
+
+        publishButton.disabled =
+            false;
+
+    }
+
+}
+
+
+
+/*
+========================================
+حذف الفيديو
+========================================
+*/
+
+function removeVideo() {
+
+    selectedVideo =
+        null;
+
+
+    videoInput.value =
+        "";
+
+
+    video.pause();
+
+
+    video.removeAttribute(
+        "src"
+    );
+
+
+    video.load();
+
+
+    preview.style.display =
+        "none";
+
+
+    fileInfo.style.display =
+        "none";
+
+
+    publishButton.style.display =
+        "none";
+
+
+    removeButton.style.display =
+        "none";
+
+
+    statusBox.textContent =
+        "";
+
+}
+
+
+
+/*
+========================================
+حماية النص
+========================================
+*/
+
+function escapeHTML(
+    text
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        text;
+
+
+    return div.innerHTML;
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>
